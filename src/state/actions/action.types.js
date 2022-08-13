@@ -1,0 +1,1 @@
+export const SET_SIGNER_INFO = "SET_SIGNER_INFO";
