@@ -142,9 +142,9 @@ const Home = () => {
       <Header />
       {page === "HOME" && (
         <Container>
-          <h2 className="welcome-title">Welcome to Pre-ICO of indexx500</h2>
+          <h2 className="welcome-title">Welcome to Pre-ICO of indexx USD Plus</h2>
           <p className="welcome-description">
-            There are 6 stages of Pre-ICO of indexx500, each stage has 2 weeks
+            There are 6 stages of Pre-ICO of indexx USD Plus, each stage has 2 weeks
             time frame and discount, do not miss!
           </p>
           <div className="text-center">

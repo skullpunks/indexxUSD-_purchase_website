@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 
 const BuyCoin = ({ signer, account }) => {
   const [to, setTo] = useState(Coins[0]);
-  const [from, setFrom] = useState({ label: "indexx500", icon: LogoIcon });
+  const [from, setFrom] = useState({ label: "indexx USD+", icon: LogoIcon });
   const [token, setToken] = useState(0);
   const [payment, setPayment] = useState(PaymentContract["BUSD"]);
   const [inputtoken, setInputtoken] = useState("");
@@ -971,9 +971,9 @@ const BuyCoin = ({ signer, account }) => {
           <img
             src={LogoIcon}
             style={{ width: 64, height: 64 }}
-            alt="indexx logo"
+            alt="indexx USD+ logo"
           />
-          <figcaption style={{ color: "#0052CC", fontSize: "larger", fontWeight: "bold" }}>indexx500</figcaption>
+          <figcaption style={{ color: "#3B8303", fontSize: "larger", fontWeight: "bold" }}>indexx USD+</figcaption>
         </figure>
         <h3 style={{ marginTop: 20, color: "#808080", marginBottom: 0 }}>
           SWAP
@@ -1002,9 +1002,9 @@ const BuyCoin = ({ signer, account }) => {
               alt="icon"
               style={{ height: 32, width: 32, margin: "auto" }}
             />
-            <span style={{ fontSize: 10, margin: 0, color: "#808080" }}>
+            <span style={{ fontSize: 10, margin: 0, color: "#3B8303" }}>
               {/* {from.label} */}
-              indexx
+              indexx USD+
             </span>
           </div>
           <div>
