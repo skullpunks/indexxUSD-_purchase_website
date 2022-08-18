@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
-import LogoIcon from "../assets/icons/logo.svg";
+import LogoIcon from "../assets/icons/indexxUSD+.gif";
 
 const Header = () => {
   return (
