@@ -142,9 +142,9 @@ const Home = () => {
       <Header />
       {page === "HOME" && (
         <Container>
-          <h2 className="welcome-title">Welcome to Pre-ICO of indexx USD Plus</h2>
+          <h2 className="welcome-title">Welcome to Pre-ICO of indexx USD+</h2>
           <p className="welcome-description">
-            There are 6 stages of Pre-ICO of indexx USD Plus, each stage has 2 weeks
+            There are 6 stages of Pre-ICO of indexx USD+, each stage has 2 weeks
             time frame and discount, do not miss!
           </p>
           <div className="text-center">
@@ -156,8 +156,8 @@ const Home = () => {
                   discount="15%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220801")}
-                  edate={moment("20220831")}
+                  sdate={moment("20220901")}
+                  edate={moment("20220930")}
                 />
               </Col>
             </div>
@@ -245,8 +245,8 @@ const Home = () => {
                   discount="15%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220815")}
-                  edate={moment("20220831")}
+                  sdate={moment("20220915")}
+                  edate={moment("20220930")}
                 />
               </Col>
               <Col xl={6} md={6}>
@@ -255,8 +255,8 @@ const Home = () => {
                   discount="12%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220901")}
-                  edate={moment("20220915")}
+                  sdate={moment("20221001")}
+                  edate={moment("20221015")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -265,8 +265,8 @@ const Home = () => {
                   discount="9%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220916")}
-                  edate={moment("20220930")}
+                  sdate={moment("20221016")}
+                  edate={moment("20221030")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -275,8 +275,8 @@ const Home = () => {
                   discount="6%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221001")}
-                  edate={moment("20221015")}
+                  sdate={moment("20221101")}
+                  edate={moment("20221115")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -285,8 +285,8 @@ const Home = () => {
                   discount="3%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221016")}
-                  edate={moment("20221031")}
+                  sdate={moment("20221116")}
+                  edate={moment("20221130")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -295,8 +295,8 @@ const Home = () => {
                   discount="1%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221101")}
-                  edate={moment("20221115")}
+                  sdate={moment("20221201")}
+                  edate={moment("20221215")}
                 />
               </Col>
             </Row>
