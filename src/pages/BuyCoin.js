@@ -17,7 +17,7 @@ const BuyCoin = ({ signer, account }) => {
   const [buyNowBtn, setBuyNowBtn] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const sp500ChainlinkAddress = "0xb24D1DeE5F9a3f761D286B56d2bC44CE1D02DF7e";
+  const usdtChainlinkAddress = "0xB97Ad0E74fa7d920791E90258A6E2085088b4320";
   const bnbChainlinkAddress = "0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE";
   const wbtcChainlinkAddress = "0x264990fbd0A4796A3E3d8E37C4d5F87a3aCa5Ebf";
   const wethChainlinkAddress = "0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e";
@@ -814,7 +814,7 @@ const BuyCoin = ({ signer, account }) => {
     let addr = "";
     let tokenPrice = 0;
     let spprice = 0;
-    let spaddr = sp500ChainlinkAddress;
+    let usdtaddr = usdtChainlinkAddress;
     if (payment === PaymentContract["BNB"]) {
       addr = bnbChainlinkAddress;
     } else if (payment === PaymentContract["BUSD"]) {
@@ -839,12 +839,14 @@ const BuyCoin = ({ signer, account }) => {
         console.log("token value: " + tokenPrice);
       });
     }
-    const spFeed = new ethers.Contract(spaddr, chainlinkABI, rpcProvider);
+    const spFeed = new ethers.Contract(usdtaddr, chainlinkABI, rpcProvider);
     await spFeed.latestRoundData().then((roundData) => {
       spprice = roundData[1] / 10000000000;
       console.log("sp500 value: " + spprice);
+      console.log("inputs value: " + inputs);
+      console.log("tokenPrice value: " + tokenPrice);
       let rate = inputs * (tokenPrice / spprice);
-      setToken(Math.round(rate * 100) / 100);
+      setToken(Math.round(rate * 100));
       setLoading(false);
     });
   };
@@ -857,8 +859,8 @@ const BuyCoin = ({ signer, account }) => {
     setTo(e);
     let addr = "";   // Chainlink addresses
     let tokenPrice = 0;
-    let spprice = 0;
-    let spaddr = sp500ChainlinkAddress;
+    let usdtprice = 0;
+    let usdtaddr = usdtChainlinkAddress;
 
     if (tokenContract.label === "BNB") {
       addr = bnbChainlinkAddress;
@@ -884,11 +886,11 @@ const BuyCoin = ({ signer, account }) => {
         console.log("token value: " + tokenPrice);
       });
     }
-    const spFeed = new ethers.Contract(spaddr, chainlinkABI, rpcProvider);
+    const spFeed = new ethers.Contract(usdtaddr, chainlinkABI, rpcProvider);
     await spFeed.latestRoundData().then((roundData) => {
-      spprice = roundData[1] / 10000000000;
-      console.log("sp500 value: " + spprice);
-      let rate = inputtoken * (tokenPrice / spprice);
+      usdtprice = roundData[1] / 10000000000;
+      console.log("usdt value: " + usdtprice);
+      let rate = inputtoken * (tokenPrice / usdtprice);
       setToken(Math.round(rate * 100) / 100);
       setLoading(false);
     });

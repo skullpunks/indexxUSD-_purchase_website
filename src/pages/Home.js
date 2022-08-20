@@ -120,14 +120,14 @@ const Home = () => {
 
   const indexPrice = async () => {
     let spprice = 0;
-    let spaddr = "0xb24D1DeE5F9a3f761D286B56d2bC44CE1D02DF7e";
+    let usdtaddr = "0xB97Ad0E74fa7d920791E90258A6E2085088b4320";
     let rpcProvider = new ethers.providers.JsonRpcProvider(
       "https://bsc-dataseed1.binance.org/"
     );
-    const spFeed = new ethers.Contract(spaddr, chainlinkABI, rpcProvider);
+    const spFeed = new ethers.Contract(usdtaddr, chainlinkABI, rpcProvider);
     await spFeed.latestRoundData().then((roundData) => {
       spprice = roundData[1] / 10000000000;
-      spprice = Math.round(spprice * 100) / 100;
+      spprice = Math.round(spprice * 100);
       setSprice(spprice);
       return spprice;
     });
@@ -156,8 +156,8 @@ const Home = () => {
                   discount="15%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220901")}
-                  edate={moment("20220930")}
+                  sdate={moment("20220815")}
+                  edate={moment("20220915")}
                 />
               </Col>
             </div>
@@ -233,7 +233,7 @@ const Home = () => {
           <div className="curculating">
             <h2>
               <span className="supply">TOTAL PRE-ICO SUPPLY:</span>{" "}
-              <span className="price">150,000</span>
+              <span className="price">600,000</span>
             </h2>
           </div>
 
@@ -245,8 +245,8 @@ const Home = () => {
                   discount="15%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220915")}
-                  edate={moment("20220930")}
+                  sdate={moment("20220815")}
+                  edate={moment("20220915")}
                 />
               </Col>
               <Col xl={6} md={6}>
@@ -255,8 +255,8 @@ const Home = () => {
                   discount="12%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221001")}
-                  edate={moment("20221015")}
+                  sdate={moment("20220916")}
+                  edate={moment("20220930")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -265,8 +265,8 @@ const Home = () => {
                   discount="9%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221016")}
-                  edate={moment("20221030")}
+                  sdate={moment("20221001")}
+                  edate={moment("20221015")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -275,8 +275,8 @@ const Home = () => {
                   discount="6%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221101")}
-                  edate={moment("20221115")}
+                  sdate={moment("20221016")}
+                  edate={moment("20221031")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -285,8 +285,8 @@ const Home = () => {
                   discount="3%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221116")}
-                  edate={moment("20221130")}
+                  sdate={moment("20221101")}
+                  edate={moment("20221115")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -295,8 +295,8 @@ const Home = () => {
                   discount="1%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221201")}
-                  edate={moment("20221215")}
+                  sdate={moment("20221116")}
+                  edate={moment("20221130")}
                 />
               </Col>
             </Row>

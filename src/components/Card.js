@@ -56,7 +56,7 @@ const CardComponent = ({
               style={{ width: 24, height: 24, marginLeft: 6 }}
             />
           </p>
-          <h3 className="amountPrice">25,000</h3>
+          <h3 className="amountPrice">100,000</h3>
         </div>
         <div className="price-info" style={{ marginTop: 30 }}>
           <p
