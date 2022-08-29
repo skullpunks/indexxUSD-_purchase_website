@@ -19,7 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 const Index = () => {
   return (
     <React.StrictMode>
-      <ToastContainer />
+      <ToastContainer limit={1} position="bottom-center" />
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter>

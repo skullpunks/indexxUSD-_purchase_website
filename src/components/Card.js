@@ -80,7 +80,7 @@ const CardComponent = ({
           <div>
             <p className="percentage">
               {checkBetween(sdate, edate)
-                ? "56%"
+                ? "34%"
                 : checkAfterDate(edate)
                   ? "89%"
                   : "0%"}
