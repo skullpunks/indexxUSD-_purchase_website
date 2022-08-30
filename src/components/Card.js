@@ -89,7 +89,7 @@ const CardComponent = ({
           <ProgressBar
             now={
               checkBetween(sdate, edate)
-                ? 56
+                ? 34
                 : checkAfterDate(edate)
                   ? 89
                   : progressBar

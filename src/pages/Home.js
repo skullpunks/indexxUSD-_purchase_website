@@ -215,7 +215,7 @@ const Home = () => {
                 <Card className="instruction-card">
                   <Card.Text className="instruction-card-number">3</Card.Text>
                   <Card.Text className="instruction-card-details">
-                    Token amount is calculated according to LIVE S&P500 Index price
+                    Token amount is Pegged with Tether(USDT) Price
                   </Card.Text>
                 </Card>
               </Col>
@@ -238,7 +238,7 @@ const Home = () => {
                     <Card.Text className="instruction-card-details">
                       <a className="link"
                         target="_blank"
-                        href={"https://bscscan.com/address/0x94C6156Da5DF99b3A529b47b54C6ff480c1440bb#readContract"}> Check Your Tokens</a>
+                        href={"https://bscscan.com/address/0x44D37703A37C617b6B824Eb45615aC5304740305#readContract"}> Check Your Tokens</a>
                     </Card.Text>
                   </div>
                 </Card>
