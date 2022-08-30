@@ -542,6 +542,7 @@ div[role='menu'].visible {
 .link {
     text-decoration: none;
     padding: 10px;
+    color:  #008038;
 }
 
 .instructionsHeading {
@@ -553,18 +554,18 @@ div[role='menu'].visible {
 .viewVideo {
     margin-top: 3rem;
     margin-bottom: 2rem;
-    background: #1478f6;
+    background:  #008038;
     color: white;
     border-radius: 12px;
-    border-color: #1478f6;
+    border-color:  #008038;
     margin-left: 20px;
     padding: 5px 20px;
     font-size: 16px;
 }
 
 .viewVideo:hover {
-    background-color: #002175;
-    border-color: #002175;
+    background-color:#025526;
+    border-color:#025526;
     color: white;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
@@ -586,7 +587,7 @@ div[role='menu'].visible {
 
 .modal-header {
     font-size: 20px;
-    color: #106df6;
+    color:  #008038;
 }
 
 .warningBar {
