@@ -932,6 +932,11 @@ const BuyCoin = ({ signer, account, networkName }) => {
   };
 
   const approve = async () => {
+    if(token < 1) {
+      toast.error("Minimum Purchase 1 Indexx Token");
+      return
+    }
+
     try {
       alert("Approve by scrolling down and confirm the transaction");
       setLoading(true);
@@ -979,7 +984,11 @@ const BuyCoin = ({ signer, account, networkName }) => {
         </h3>
         <p style={{ color: "#808080" }}>Trade token in an instant</p>
         <p style={{ color: "#0179fa" }}>{`Account: ${truncateAddress(account)}`}({networkName})</p>
-        {networkName !== "bnb" && <p className="warningBar">WRONG NETWORK !!!</p>}
+
+        { networkName !== "bnb" &&
+            <div className="warningBarContainer">
+              <p className="warningBar">Wrong Network! Please switch to BSC Smart Chain and refresh the page</p>
+            </div>}
 
         <p style={{ color: "#0179fa" }}>Choose Payment Token</p>
 
