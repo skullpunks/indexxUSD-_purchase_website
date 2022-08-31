@@ -12,6 +12,7 @@ import CardComponent from "../components/Card";
 import { providerOptions } from "../providerOptions";
 import BuyCoin from "./BuyCoin";
 import moment from "moment";
+import InstructionsModal from "../components/InstructionsModal";
 
 const web3Modal = new Web3Modal({
   cacheProvider: false, // optional
@@ -27,6 +28,7 @@ const Home = () => {
   const [sprice, setSprice] = useState("");
   const [signer, setSigner] = useState("");
   const [page, setPage] = useState("HOME");
+  const [showInstructionsModal, setShowInstructionsModal] = useState(false)
 
   const chainlinkABI = [
     {
@@ -186,10 +188,26 @@ const Home = () => {
               BUY NOW
             </div>
 
+            <div className="warningBarContainer">
+              <label htmlFor="viewVideoButton">Going through the Instructions is highly suggested before proceeding further!!!</label>
+            </div>
+
+
+            { showInstructionsModal &&
+                <InstructionsModal
+                    isOpen={showInstructionsModal}
+                    closeModal={() => setShowInstructionsModal(false)}
+                />
+            }
+
+
 
           </div>
-          <div className="">
+          <div className="instructionsHeading">
             <h2 className="instructions">Instructions</h2>
+            <button id="viewVideoButton" className="viewVideo" onClick={() => setShowInstructionsModal(true)}>
+              Watch Video
+            </button>
           </div>
           <div style={{ marginBottom: "10px" }}>
             <Row>
