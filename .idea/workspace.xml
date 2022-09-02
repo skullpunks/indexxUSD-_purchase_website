@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="23dbca6c-d744-40f7-afbf-1692bb0c82a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/instagram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/reddit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/twitter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/assets/icons/youtube.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +30,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/assets/icons" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -49,6 +42,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets/icons" />
       <recent name="$PROJECT_DIR$/src/components" />
     </key>
   </component>
@@ -68,7 +62,9 @@
       <workItem from="1661951669556" duration="259000" />
       <workItem from="1661957019613" duration="2143000" />
       <workItem from="1661969401056" duration="50000" />
-      <workItem from="1662043062653" duration="1060000" />
+      <workItem from="1662043062653" duration="1738000" />
+      <workItem from="1662124991380" duration="991000" />
+      <workItem from="1662130494877" duration="275000" />
     </task>
     <servers />
   </component>
