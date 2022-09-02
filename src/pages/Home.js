@@ -86,10 +86,10 @@ const Home = () => {
         method: "wallet_addEthereumChain",
         params: [
           {
-            chainId: "0x61",
-            chainName: "BSC Testnet",
-            rpcUrls: ["https://data-seed-prebsc-1-s1.binance.org:8545"],
-            blockExplorerUrls: ["https://explorer.binance.org/smart-testnet"],
+            chainId: "0x38",
+            chainName: "BSC Mainnet",
+            rpcUrls: ["https://bsc-dataseed1.binance.org/"],
+            blockExplorerUrls: ["https://bscscan.com"],
             nativeCurrency: {
               symbol: "BNB",
               decimals: 18,
