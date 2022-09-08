@@ -172,8 +172,8 @@ const Home = () => {
                   discount="15%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220815")}
-                  edate={moment("20220915")}
+                  sdate={moment("20220915")}
+                  edate={moment("20221015")}
                 />
               </Col>
             </div>
@@ -286,8 +286,8 @@ const Home = () => {
                   discount="15%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220815")}
-                  edate={moment("20220915")}
+                  sdate={moment("20220915")}
+                  edate={moment("20221015")}
                 />
               </Col>
               <Col xl={6} md={6}>
@@ -296,8 +296,8 @@ const Home = () => {
                   discount="12%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20220916")}
-                  edate={moment("20220930")}
+                  sdate={moment("20221016")}
+                  edate={moment("20221031")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -306,8 +306,8 @@ const Home = () => {
                   discount="9%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221001")}
-                  edate={moment("20221015")}
+                  sdate={moment("20221101")}
+                  edate={moment("20221115")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -316,8 +316,8 @@ const Home = () => {
                   discount="6%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221016")}
-                  edate={moment("20221031")}
+                  sdate={moment("20221116")}
+                  edate={moment("20221130")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -326,8 +326,8 @@ const Home = () => {
                   discount="3%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221101")}
-                  edate={moment("20221115")}
+                  sdate={moment("20221201")}
+                  edate={moment("20221215")}
                 />
               </Col>
               <Col xl={6} md={6} style={{ marginTop: 25 }}>
@@ -336,8 +336,8 @@ const Home = () => {
                   discount="1%"
                   unitPrice={sprice}
                   progressBar={0}
-                  sdate={moment("20221116")}
-                  edate={moment("20221130")}
+                  sdate={moment("20221216")}
+                  edate={moment("20221231")}
                 />
               </Col>
             </Row>

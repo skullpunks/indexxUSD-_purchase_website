@@ -6,7 +6,7 @@ const InstructionsModal = ({isOpen, closeModal}) => {
             <Modal show={isOpen} onHide={closeModal}>
                 <Modal.Header closeButton>IndexUSD+ Instructions</Modal.Header>
                 <Modal.Body>
-                    <iframe width="1000" height="500" src="https://www.youtube.com/embed/hdTgTYr95Q4?autoplay=1"
+                    <iframe width="1000" height="500" src="https://www.youtube.com/embed/Ypu_e_bUtdk?autoplay=1"
                                             title="YouTube video player" frameBorder="0"
                                             allow="autoplay; encrypted-media; gyroscope;"
                                             allowFullScreen/>
