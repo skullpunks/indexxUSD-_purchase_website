@@ -17,6 +17,23 @@ const CardComponent = ({
     const check = moment().isBetween(date2, date3);
     return check;
   }
+
+  function getnth(d) {
+    console.log(d)
+    console.log(d%10)
+    if (d > 3 && d < 21) return "th";
+    switch (d % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  }
+
   const checkAfterDate = (edate) => {
     return moment().isAfter(edate);
   };
@@ -27,10 +44,10 @@ const CardComponent = ({
           <div className="card-header-color">
             <h5>
               {`${sdate.format("D")}`}
-              <sup>th</sup>&nbsp;
+              <sup>{getnth(sdate.format("D"))}</sup>&nbsp;
               {sdate.format("MMMM")}
               &nbsp;to {edate.format("D")}
-              <sup>th</sup> {edate.format("MMMM")} 2022
+              <sup>{getnth(edate.format("D"))}</sup> {edate.format("MMMM")} 2022
             </h5>
             <h2 className="price-title">{title}</h2>
           </div>
