@@ -19,8 +19,6 @@ const CardComponent = ({
   }
 
   function getnth(d) {
-    console.log(d)
-    console.log(d%10)
     if (d > 3 && d < 21) return "th";
     switch (d % 10) {
       case 1:
