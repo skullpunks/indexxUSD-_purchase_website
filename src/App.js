@@ -1,18 +1,13 @@
-import { useEffect, useState } from "react";
-import {
-  VStack,
-  Button,
-  Text,
-  HStack,
-  Select,
-  Input
-} from "@chakra-ui/react";
 import { CheckCircleIcon, WarningIcon } from "@chakra-ui/icons";
-import { Tooltip } from "@chakra-ui/react";
-import { toHex, truncateAddress } from "./utils";
+import {
+  Button, HStack, Input, Select, Text, Tooltip, VStack
+} from "@chakra-ui/react";
 import { ethers } from "ethers";
+import { useEffect, useState } from "react";
 import Web3Modal from "web3modal";
 import { providerOptions } from "./providerOptions";
+import { truncateAddress } from "./utils";
+
 
 const web3Modal = new Web3Modal({
   cacheProvider: false, // optional

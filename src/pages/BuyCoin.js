@@ -8,6 +8,8 @@ import InputText from "../components/InputText";
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import TokenButton from "../components/TokenButton/TokenButton";
+import * as axios from "axios";
+import { useSearchParams } from 'react-router-dom';
 
 const BuyCoin = ({ signer, account, networkName }) => {
   const [to, setTo] = useState(Coins[0]);
@@ -17,18 +19,21 @@ const BuyCoin = ({ signer, account, networkName }) => {
   const [inputtoken, setInputtoken] = useState("");
   const [buyNowBtn, setBuyNowBtn] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [paymentMethodPrice, setPaymentMethodPrice] = useState(0);
+  const [searchParams, _setSearchParams] = useSearchParams();
+  searchParams.get("referralcode")
+  const usdtChainlinkAddress = "0xEca2605f0BCF2BA5966372C99837b1F182d3D620";
+  const bnbChainlinkAddress = "0x2514895c72f50D8bd4B4F9b1110F0D6bD2c97526";
+  const wbtcChainlinkAddress = "0x5741306c21795FdCBb9b265Ea0255F499DFe515C";
+  const wethChainlinkAddress = "0x143db3CEEfbdfe5631aDD3E50f7614B6ba708BA7";
+  const icoAddress = "0xDFAf7b77E1D1C3057b467568b7243ED58c531584"; //"0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
 
+  //MAIN ADDRESSES
   // const usdtChainlinkAddress = "0xB97Ad0E74fa7d920791E90258A6E2085088b4320";
   // const bnbChainlinkAddress = "0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE";
   // const wbtcChainlinkAddress = "0x264990fbd0A4796A3E3d8E37C4d5F87a3aCa5Ebf";
   // const wethChainlinkAddress = "0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e";
-  // const icoAddress = "0x07725EfbC87E293EEeD1c2438c4b7f7A007fF850";
-
-  const usdtChainlinkAddress = "0xB97Ad0E74fa7d920791E90258A6E2085088b4320";
-  const bnbChainlinkAddress = "0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE";
-  const wbtcChainlinkAddress = "0x264990fbd0A4796A3E3d8E37C4d5F87a3aCa5Ebf";
-  const wethChainlinkAddress = "0x9ef1B8c0E4F7dc8bF5719Ea496883DC6401d5b2e";
-  const icoAddress = "0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955";
+  // const icoAddress = "0x7e9948A7d80c5f8e5d78291b74e9DFeAc7f08955";
 
   const chainlinkABI = [
     {
@@ -82,323 +87,323 @@ const BuyCoin = ({ signer, account, networkName }) => {
 
   const icoABI = [
     {
-      "inputs": [],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
+      inputs: [],
+      stateMutability: "nonpayable",
+      type: "constructor",
     },
     {
-      "anonymous": false,
-      "inputs": [
+      anonymous: false,
+      inputs: [
         {
-          "indexed": false,
-          "internalType": "address",
-          "name": "purchaser",
-          "type": "address"
+          indexed: false,
+          internalType: "address",
+          name: "purchaser",
+          type: "address",
         },
         {
-          "indexed": false,
-          "internalType": "address",
-          "name": "token",
-          "type": "address"
+          indexed: false,
+          internalType: "address",
+          name: "token",
+          type: "address",
         },
         {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
+          indexed: false,
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256",
         },
         {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "value",
-          "type": "uint256"
-        }
+          indexed: false,
+          internalType: "uint256",
+          name: "value",
+          type: "uint256",
+        },
       ],
-      "name": "TokenPurchase",
-      "type": "event"
+      name: "TokenPurchase",
+      type: "event",
     },
     {
-      "stateMutability": "payable",
-      "type": "fallback"
+      stateMutability: "payable",
+      type: "fallback",
     },
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
       ],
-      "name": "acceptedTokens",
-      "outputs": [
+      name: "acceptedTokens",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "address",
-          "name": "_beneficiary",
-          "type": "address"
+          internalType: "address",
+          name: "_beneficiary",
+          type: "address",
         },
         {
-          "internalType": "uint256",
-          "name": "_amount",
-          "type": "uint256"
+          internalType: "uint256",
+          name: "_amount",
+          type: "uint256",
         },
         {
-          "internalType": "address",
-          "name": "tokenAddress",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "tokenAddress",
+          type: "address",
+        },
       ],
-      "name": "buyIndexxFromAnyBEP20",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
+      name: "buyIndexxFromAnyBEP20",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
     },
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "address",
-          "name": "_beneficiary",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "_beneficiary",
+          type: "address",
+        },
       ],
-      "name": "buyIndexxFromBNB",
-      "outputs": [],
-      "stateMutability": "payable",
-      "type": "function"
+      name: "buyIndexxFromBNB",
+      outputs: [],
+      stateMutability: "payable",
+      type: "function",
     },
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "uint256",
-          "name": "_discount",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "_discount",
+          type: "uint256",
+        },
       ],
-      "name": "changeDiscount",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
+      name: "changeDiscount",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
     },
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "address",
-          "name": "_newAdmin",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "_newAdmin",
+          type: "address",
+        },
       ],
-      "name": "changeIcoAdmin",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
+      name: "changeIcoAdmin",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "closingTime",
-      "outputs": [
+      inputs: [],
+      name: "closingTime",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
       ],
-      "name": "contributions",
-      "outputs": [
+      name: "contributions",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "discount",
-      "outputs": [
+      inputs: [],
+      name: "discount",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "hasClosed",
-      "outputs": [
+      inputs: [],
+      name: "hasClosed",
+      outputs: [
         {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
+          internalType: "bool",
+          name: "",
+          type: "bool",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "icoAdmin",
-      "outputs": [
+      inputs: [],
+      name: "icoAdmin",
+      outputs: [
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "indexxCryptoPriceUSD",
-      "outputs": [
+      inputs: [],
+      name: "indexxCryptoPriceUSD",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "investorMinCap",
-      "outputs": [
+      inputs: [],
+      name: "investorMinCap",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "openingTime",
-      "outputs": [
+      inputs: [],
+      name: "openingTime",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "reserveWallet",
-      "outputs": [
+      inputs: [],
+      name: "reserveWallet",
+      outputs: [
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [
+      inputs: [
         {
-          "internalType": "uint256",
-          "name": "_openingTime",
-          "type": "uint256"
+          internalType: "uint256",
+          name: "_openingTime",
+          type: "uint256",
         },
         {
-          "internalType": "uint256",
-          "name": "_closingTime",
-          "type": "uint256"
+          internalType: "uint256",
+          name: "_closingTime",
+          type: "uint256",
         },
         {
-          "internalType": "uint256",
-          "name": "_discount",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "_discount",
+          type: "uint256",
+        },
       ],
-      "name": "scheduleSale",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
+      name: "scheduleSale",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "timelockContract",
-      "outputs": [
+      inputs: [],
+      name: "timelockContract",
+      outputs: [
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "token",
-      "outputs": [
+      inputs: [],
+      name: "token",
+      outputs: [
         {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "weiRaised",
-      "outputs": [
+      inputs: [],
+      name: "weiRaised",
+      outputs: [
         {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
       ],
-      "stateMutability": "view",
-      "type": "function"
+      stateMutability: "view",
+      type: "function",
     },
     {
-      "inputs": [],
-      "name": "withdraw",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
+      inputs: [],
+      name: "withdraw",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
     },
     {
-      "stateMutability": "payable",
-      "type": "receive"
-    }
-  ]
+      stateMutability: "payable",
+      type: "receive",
+    },
+  ];
 
   const paymentABI = [
     {
@@ -812,12 +817,12 @@ const BuyCoin = ({ signer, account, networkName }) => {
     }
 
     let rpcProvider = new ethers.providers.JsonRpcProvider(
-      "https://bsc-dataseed1.binance.org/"
+      "https://data-seed-prebsc-1-s1.binance.org:8545/"
     );
     if (addr === "1") {
       tokenPrice = 1;
     } else if (addr !== "") {
-      console.log('addr', addr);
+      console.log("addr", addr);
       const tokenFeed = new ethers.Contract(addr, chainlinkABI, rpcProvider);
       await tokenFeed.latestRoundData().then((roundData) => {
         tokenPrice = roundData[1] / 100000000;
@@ -841,7 +846,7 @@ const BuyCoin = ({ signer, account, networkName }) => {
     setPayment(PaymentContract[e.label]);
 
     setTo(e);
-    let addr = "";   // Chainlink addresses
+    let addr = ""; // Chainlink addresses
     let tokenPrice = 0;
     let usdtprice = 0;
     let usdtaddr = usdtChainlinkAddress;
@@ -859,7 +864,7 @@ const BuyCoin = ({ signer, account, networkName }) => {
     }
 
     let rpcProvider = new ethers.providers.JsonRpcProvider(
-      "https://bsc-dataseed1.binance.org/"
+      "https://data-seed-prebsc-1-s1.binance.org:8545/"
     );
     if (addr === "1") {
       tokenPrice = 1;
@@ -874,6 +879,7 @@ const BuyCoin = ({ signer, account, networkName }) => {
     await spFeed.latestRoundData().then((roundData) => {
       usdtprice = roundData[1] / 100000000;
       console.log("usdt value: " + usdtprice);
+      setPaymentMethodPrice(tokenPrice / usdtprice);
       let rate = inputtoken * (tokenPrice / usdtprice);
       let inputss = Math.round(rate);
      
@@ -886,18 +892,22 @@ const BuyCoin = ({ signer, account, networkName }) => {
     try {
       console.log(inputtoken);
       console.log(token);
-      if(token < 1) {
+      if (token < 1) {
         toast.error("Minimum Purchase 1 Indexx Token");
-        return
+        return;
       } //100000000000000000
       setLoading(true);
       const ico_contract = new ethers.Contract(icoAddress, icoABI, signer);
       let tx;
-      console.log('account', account);
-      console.log('value', ethers.utils.parseUnits(inputtoken, "ether"), inputtoken);
+      console.log("account", account);
+      console.log(
+        "value",
+        ethers.utils.parseUnits(inputtoken, "ether"),
+        inputtoken
+      );
       if (payment === PaymentContract["BNB"]) {
-        console.log(ethers.utils.parseUnits(inputtoken, "ether"), 'value')
-        console.log(inputtoken, 'input')
+        console.log(ethers.utils.parseUnits(inputtoken, "ether"), "value");
+        console.log(inputtoken, "input");
         tx = await ico_contract.buyIndexxFromBNB(account, {
           value: ethers.utils.parseUnits(inputtoken, "ether"),
         });
@@ -917,9 +927,36 @@ const BuyCoin = ({ signer, account, networkName }) => {
       setBuyNowBtn(false);
       toast.success("Payment Successful");
       setLoading(false);
-      window.location.href = "https://www.indexx.ai/aboute5e75cc8";
+      const affiliateCode = searchParams.get("referralcode");
+      if (affiliateCode !=  undefined || affiliateCode != null) {
+        const paymentTypeUsed = await getPaymentUsed(payment);
+        console.log(paymentTypeUsed)
+        let userPurchaseDetails = {
+          txHash: tx.hash,
+          affiliateCode: affiliateCode,
+          totalTokensPurchased: token,
+          tokensNamePurchased: "IndexxUSD+",
+          userURLtoPurchase: window.location.href,
+          paymentTypeUsed: paymentTypeUsed,
+          paymentTokenPrice: paymentMethodPrice,
+          userIP: "120.434.1.2",
+          userWalletAddress: account,
+        };
+        //https://api.indexx.finance/api/v1/update/purchasedetails
+        let updatePurchaseDetails = await axios.post(
+          " https://1b21-49-207-219-159.ngrok.io/api/v1/update/purchasedetails",
+          userPurchaseDetails
+        );
+        console.log(updatePurchaseDetails, "updatePurchaseDetails");
+        if (updatePurchaseDetails.status === 200) {
+          alert(updatePurchaseDetails.data.message)
+          window.location.href = "https://www.indexx.ai/aboute5e75cc8";
+        }
+      } else {
+        window.location.href = "https://www.indexx.ai/aboute5e75cc8";
+      }
     } catch (error) {
-      console.log('error', error)
+      console.log("error", error);
       if (error?.data?.message != undefined)
         toast.error(error?.data?.message, {
           position: toast.POSITION.TOP_RIGHT,
@@ -931,15 +968,35 @@ const BuyCoin = ({ signer, account, networkName }) => {
     }
   };
 
+  const getPaymentUsed = async (payment) => {
+    try {
+      switch (payment) {
+        case PaymentContract["BNB"]:
+          return "BNB";
+        case PaymentContract["BUSD"]:
+          return "BUSD";
+        case PaymentContract["WBTC"]:
+          return "WBTC";
+        case PaymentContract["WETH"]:
+          return "WETH";
+        default:
+          return "Stripe";
+      }
+    } catch (err) {
+      console.log("err", err);
+    }
+  };
+
   const approve = async () => {
-    if(token < 1) {
+    if (token < 1) {
       toast.error("Minimum Purchase 1 Indexx Token");
-      return
+      return;
     }
 
     try {
       alert("Approve by scrolling down and confirm the transaction");
       setLoading(true);
+      console.log("payment", payment);
       const paymentContract = new ethers.Contract(payment, paymentABI, signer);
       const tx = await paymentContract.approve(
         icoAddress,
@@ -957,7 +1014,6 @@ const BuyCoin = ({ signer, account, networkName }) => {
       // TODO Error handle with toast message
       toast.error(error);
       setLoading(false);
-
     }
   };
 
@@ -977,22 +1033,35 @@ const BuyCoin = ({ signer, account, networkName }) => {
             style={{ width: 64, height: 64 }}
             alt="indexx USD+ logo"
           />
-          <figcaption style={{ color: "#008038", fontSize: "larger", fontWeight: "bold" }}>indexx USD+</figcaption>
+          <figcaption
+            style={{ color: "#008038", fontSize: "larger", fontWeight: "bold" }}
+          >
+            indexx USD+
+          </figcaption>
         </figure>
         <h3 style={{ marginTop: 20, color: "#008038", marginBottom: 0 }}>
           SWAP
         </h3>
         <p style={{ color: "#008038" }}>Trade token in an instant</p>
-        <p style={{ color: "#008038" }}>{`Account: ${truncateAddress(account)}`}({networkName})</p>
+        <p style={{ color: "#008038" }}>
+          {`Account: ${truncateAddress(account)}`}({networkName})
+        </p>
 
-        { networkName !== "bnb" &&
-            <div className="warningBarContainer">
-              <p className="warningBar">Wrong Network! Please switch to BSC Smart Chain and refresh the page</p>
-            </div>}
+        {networkName !== "bnb" && (
+          <div className="warningBarContainer">
+            <p className="warningBar">
+              Wrong Network! Please switch to BSC Smart Chain and refresh the
+              page
+            </p>
+          </div>
+        )}
 
         <p style={{ color: "#008038" }}>Choose Payment Token</p>
 
-        <TokenButton selectedToken={to} onChange={(coin) => handlePayment(coin)} />
+        <TokenButton
+          selectedToken={to}
+          onChange={(coin) => handlePayment(coin)}
+        />
         <InputText
           icon={to.icon}
           value={to.label}
@@ -1016,7 +1085,9 @@ const BuyCoin = ({ signer, account, networkName }) => {
               alt="icon"
               style={{ height: 32, width: 32, margin: "auto" }}
             />
-            <span style={{ fontSize: 10, margin: 0, color: "#808080", width: 28 }}>
+            <span
+              style={{ fontSize: 10, margin: 0, color: "#808080", width: 28 }}
+            >
               {/* {from.label} */}
               indexx USD+
             </span>
@@ -1043,13 +1114,21 @@ const BuyCoin = ({ signer, account, networkName }) => {
       )}
       <div>
         <p className="guide-lines text-center">
-          Tokens bought with discount will be released as per time lock
-          schedule with KYC guidelines
+          Tokens bought with discount will be released as per time lock schedule
+          with KYC guidelines
         </p>
       </div>
-      <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
-
   );
 };
 
