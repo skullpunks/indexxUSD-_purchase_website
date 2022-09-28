@@ -158,7 +158,7 @@ const Home = () => {
       <Header />
       {page === "HOME" && (
         <Container>
-          <h2 className="welcome-title">Welcome to Pre-ICO of indexx USD+</h2>
+          <h2 className="welcome-title">Welcome to Pre-ICO of indexx USD+(iUSD+)</h2>
           <p className="welcome-description">
             There are 6 stages of Pre-ICO of indexx USD+, each stage has 2 weeks
             time frame and discount, do not miss!
